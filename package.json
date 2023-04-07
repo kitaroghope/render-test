@@ -9,6 +9,11 @@
   "author": "kita rog hope",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "mongodb": "^5.2.0",
+    "nodemailer": "^6.9.1",
+    "socket.io": "^4.6.1"
   }
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHH Advertise</title>
+    <link rel="stylesheet" href="styleLib/bootstrap.min.css">
+    <link rel="stylesheet" href="styleLib/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row kampala">
+            <div class="col-12"><img src="images/holiday_homes_banner.jpg" alt="Kampala Holiday Homes"></div>
+        </div>
+    </div>
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Kampala Holiday Homes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/properties">Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/advertise">Advertise</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contactUs">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>  
+    <div class="container">
+        <div class="row bg-dark text-light ">
+            <h2 class="text-warning py-3">ABOUT US</h2>
+            <div class="col-1"></div>
+            <div class="col-10">
+                <p>Kampala Holiday Homes is a UK company based in the city of London and was formed by A. Kimbugwe in 2003. He began by renting out his Uganda residence for the period he was not occupying it. This service proved very popular and within a short period he was overwhelmed with inquiries from people recommended to him and those returning for repeat business. To meet this increasing demand, Antony has teamed up with individuals living abroad who have second homes around Kampala.</p>
+                <p>All the homes under the Kampala Holiday Homes umbrella are carefully vetted to ensure that they meet our high standards with regard to location, facilities and security.</p>
+                <p>Our aim from the beginning and to this day, is to bring together the finest luxury holiday homes available to offer holidaymakers looking for something special at an affordable price.</p>
+                <p>With over a dozen high quality holiday rentals now available to Kampala Holiday Homes and more owners are joining us every week, our company is going from strength to strength. Our aim is to become the top holiday homes let companies in East Africa.</p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row gallery bg-dark pb-4 text-center ">
+            <h3 class="text-warning py-3">Meet the men behind Kampala Holiday Homes.</h3>
+            <div class="row row-cols-1 row-cols-md-3 g-4 pb-2 m-0 d-flex align-items-center justify-content-center">
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="House Image">
+                    <div class="card-body">
+                      <h5 class="card-title">House Name</h5>
+                      <p class="card-text">House Description</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="House Image">
+                    <div class="card-body">
+                      <h5 class="card-title">House Name</h5>
+                      <p class="card-text">House Description</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+        <div class="row footer">
+            <div class="col-12 bg-danger">
+                <p class="text-light text-center">&copy; KAMPALA HOLIDAY HOMES</p>
+            </div>
+        </div>
+    </div>
+    <script src="styleLib/jquery.js"></script>
+    <script src="styleLib/js.js"></script>
+    <script>
+        $('#man').on('change',(e)=>{
+            var image1 = $(e.target).val();
+            console.log(image1.split('\\').pop())
+        })
+        const toggleButton = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        toggleButton.addEventListener('click', () => {
+        navbarCollapse.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

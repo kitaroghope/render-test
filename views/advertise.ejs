@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Kampala Holiday Homes">
+    <meta property="og:description" content="Having any property TO LET? Check out our offer at Kampala Holiday Homes.">
+    <meta property="og:image" content="https://kampalaholidayhomes.onrender.com/images/holiday_homes_banner.jpg">
+    <meta property="og:url" content="https://kampalaholidayhomes.onrender.com/advertise">
+
+    <title>KHH Advertise</title>
+    <link rel="stylesheet" href="styleLib/bootstrap.min.css">
+    <link rel="stylesheet" href="styleLib/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row kampala">
+            <div class="col-12"><img src="images/holiday_homes_banner.jpg" alt="Kampala Holiday Homes"></div>
+        </div>
+    </div>
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Kampala Holiday Homes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/properties">Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Advertise</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutUs">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contactUs">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>  
+    <div class="container">
+        <div class="row bg-dark text-light">
+            <h2 class="text-warning py-3">Advertise with us</h2>
+            <div class="col-1"></div>
+            <div class="col-10">
+                <p>Welcome to Kampala Holiday Homes, the specialists in holiday let accommodation in Kampala. Our web site receives hundreds of visitors each week looking for high quality vacation homes to let on short term basis. Due to our increased popularity, we are looking for more top quality houses to add to our portfolio. In order to be accepted in the Kampala Holiday Homes family of properties, your house must meet the following, which are our minimum requirements:</p>
+                <ul>
+                    <li>Security: The property must be enclosed in a perimeter wall with a lockable main gate and a resident gatekeeper / houseboy. The property must also be located in a good neighbourhood.</li>
+                    <li>The property must have an internal toilet and bathroom with running hot and cold water taps.</li>
+                    <li>The living room must contain at TV, Radio, DVD Player, coffee table and a comfortable seating arrangement.</li>
+                    <li>The dining area must have a table and chairs to suit.</li>
+                    <li>The kitchen must be fully functional with a cooker, kettle, fridge, cooking pots, cups, plates cutlery, worktops and storage units.</li>
+                    <li>All bedrooms must contain a wardrobe, a bed with a mattress, pillows and a blanket.</li>
+                    <li>All windows must have curtains or blinds.</li>
+                </ul>
+                <p>So if you think you have such a property, please <a href="/contact">Contact Us</a> and find out what Kampala Holiday Homes can do for you.</p>
+                <p>Here are the reasons why it makes sense to register your property with Kampala Holiday Homes:</p>
+                <ul>
+                    <li>We are one of the top holiday letting company specialising in the Kampala area.</li>
+                    <li>Our web site receives thousands of hits each week from people looking properties like yours.</li>
+                    <li>All our clients are holidaymakers or business people based outside Uganda.</li>
+                    <li>We carry out marketing to ensure high levels of occupancy and the maximum possible letting income for your property</li>
+                    <li>We will feature your property on our web site for free. You only pay us commission once we have let out your property.</li>
+                    <li>We have local representatives in Kampala.</li>
+                    <li>We have been in business for over three years.</li>
+                </ul>
+                <p>To find out more about advertising your property with us, please contact Antony. Contact details in <a href="/contact">Contact Us</a></p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row footer">
+            <div class="col-12 bg-danger">
+                <p class="text-light text-center">&copy; KAMPALA HOLIDAY HOMES</p>
+            </div>
+        </div>
+    </div>
+    <script src="styleLib/jquery.js"></script>
+    <script src="styleLib/js.js"></script>
+    <script>
+        $('#man').on('change',(e)=>{
+            var image1 = $(e.target).val();
+            console.log(image1.split('\\').pop())
+        })
+        const toggleButton = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        toggleButton.addEventListener('click', () => {
+        navbarCollapse.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

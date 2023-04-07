@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHH Properties</title>
+    <link rel="stylesheet" href="styleLib/bootstrap.min.css">
+    <link rel="stylesheet" href="styleLib/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row kampala">
+            <div class="col-12"><img src="images/holiday_homes_banner.jpg" alt="Kampala Holiday Homes"></div>
+        </div>
+    </div>
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Kampala Holiday Homes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/advertise">Advertise</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutUs">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contactUs">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row bg-gradient text-warning bg-success bg-dark">
+            <h3 class="text-center py-4">Our Villas are organised according to their locations</h4>
+        </div>
+          
+          <% const houseLocations = [
+               { name: "Zaana", imageSrc: "images/image.jpg" },
+               { name: "Bunga", imageSrc: "images/image.jpg" }
+             ];
+             houseLocations.forEach((houseLocation) => { %>
+          
+            <div class="row gallery bg-dark">
+              <h6 class="text-light">In <%= houseLocation.name %></h6>
+              <div class="row row-cols-1 row-cols-md-3 g-4 pb-2 m-0 ">
+                <% for (let i = 1; i <= 3; i++) { %>
+                  <div class="col">
+                    <div class="card h-100">
+                      <img src="<%= houseLocation.imageSrc %>" class="card-img-top" alt="House Image">
+                      <div class="card-body">
+                        <h5 class="card-title">House Name</h5>
+                        <p class="card-text">House Description</p>
+                      </div>
+                      <div class="card-footer">
+                        <a href="#" class="btn btn-primary">View House Details</a>
+                      </div>
+                    </div>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          
+          <% }); %>
+          
+        <div class="row footer">
+            <div class="col-12 bg-danger">
+                <p class="text-light text-center">&copy; KAMPALA HOLIDAY HOMES</p>
+            </div>
+        </div>
+    </div>
+    <script src="styleLib/jquery.js"></script>
+    <script src="styleLib/js.js"></script>
+    <script>
+        $('#man').on('change',(e)=>{
+            var image1 = $(e.target).val();
+            console.log(image1.split('\\').pop())
+        })
+        const toggleButton = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        toggleButton.addEventListener('click', () => {
+        navbarCollapse.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

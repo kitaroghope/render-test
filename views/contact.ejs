@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHH Advertise</title>
+    <link rel="stylesheet" href="styleLib/bootstrap.min.css">
+    <link rel="stylesheet" href="styleLib/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row kampala">
+            <div class="col-12"><img src="images/holiday_homes_banner.jpg" alt="Kampala Holiday Homes"></div>
+        </div>
+    </div>
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Kampala Holiday Homes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/properties">Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/advertise">Advertise</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutUs">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>  
+    <div class="container">
+        <div class="row bg-dark text-light contactUs">
+            <h2 class="text-warning py-3">Contact Us</h2>
+            <div class="col-1"></div>
+            <div class="col-10">
+                <p>Please do not hesitate to contact us if you have any queries.</p>
+                <p><strong>Telephone:</strong> <a href="tel:+44 795 7251911">+44 795 7251911</a>  / <a href="tel:+256 793612518">+256 793612518</a> / <a href="tel:+256 701 858946">+256 701 858946</a></p>
+                <p><strong>Email:</strong> <a href="mailto://antony@kampalaholidayhomes.com">antony@kampalaholidayhomes.com</a></p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row footer">
+            <div class="col-12 bg-danger">
+                <p class="text-light text-center">&copy; KAMPALA HOLIDAY HOMES</p>
+            </div>
+        </div>
+    </div>
+    <script src="styleLib/jquery.js"></script>
+    <script src="styleLib/js.js"></script>
+    <script>
+        $('#man').on('change',(e)=>{
+            var image1 = $(e.target).val();
+            console.log(image1.split('\\').pop())
+        })
+        const toggleButton = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        toggleButton.addEventListener('click', () => {
+        navbarCollapse.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

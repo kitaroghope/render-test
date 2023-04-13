@@ -62,7 +62,8 @@ $('#property-form').on('submit', (e) => {
       "dbName" : "houses",
       "obj" : "properties",
       "key" : $('#tbName').val(),
-      "keys": "arr"
+      "keys": "arr",
+      "url":"/properties"
     }
 
     const formData = new FormData();

@@ -10,7 +10,7 @@ const { stringify } = require('querystring');
 const app = express();
 var properties = {};
 var bookings = {"2023":[['2023-08-01', '2023-09-01'],['2023-09-20', '2023-11-02']]};
-var workers = [{"name":"kita","image":"men","description":"meauikuad "}];
+var workers = [];
 var Auth = {
   "addHouse":"/newHouse",
   "addWorker":"/addWorker",
@@ -164,7 +164,11 @@ app.get('/advertise', (req, res) => {
 });
 // bookings
 app.post('/bookings',async(req, res)=>{
-  res.json({book:bookings});
+  try {
+    res.json({book:bookings});
+  } catch (error) {
+    res.status(500)
+  }
 })
 
 var pass = "administrator";

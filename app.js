@@ -57,6 +57,7 @@ async function getWorkers(){
   workers = res;
 }
 getHouses();
+getWorkers();
 // app.use(bodyParser.json())
 // testing mongodb
 

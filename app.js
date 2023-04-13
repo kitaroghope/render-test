@@ -50,7 +50,7 @@ async function getBookings(){
   }
 }
 async function getWorkers(){
-  const res = await mongo.readRows({},"users","workers");
+  const res = await mongo.readRows({},"people","users");
   if(res == ""){
     return
   }

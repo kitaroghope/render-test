@@ -56,26 +56,23 @@
         <div class="row gallery bg-dark pb-4 text-center ">
             <h3 class="text-warning py-3">Meet the men behind Kampala Holiday Homes.</h3>
             <div class="row row-cols-1 row-cols-md-3 g-4 pb-2 m-0 d-flex align-items-center justify-content-center">
+            <% if (workers == 'undefined' || workers == []) { %>
+             <h1>Loading</h1>
+            <% } else { %>
+              <% workers.forEach(worker => { %>
                 <div class="col">
                   <div class="card h-100">
-                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="House Image">
+                    <img src="images/undefined/<%= worker.photo %>" class="card-img-top" alt="worker">
                     <div class="card-body">
-                      <h5 class="card-title">House Name</h5>
-                      <p class="card-text">House Description</p>
+                      <h5 class="card-title"><%= worker.name %></h5>
+                      <p class="card-text"><%= worker.description %></p>
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="House Image">
-                    <div class="card-body">
-                      <h5 class="card-title">House Name</h5>
-                      <p class="card-text">House Description</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
+            <% }); %>
+            <% } %> 
+            </div>
+            <button class="btn btn-success" onclick="addItem('addWorker')">Register as worker</button>
         </div>
         <div class="row footer">
             <div class="col-12 bg-danger">
@@ -86,16 +83,6 @@
     <script src="styleLib/jquery.js"></script>
     <script src="styleLib/js.js"></script>
     <script>
-        $('#man').on('change',(e)=>{
-            var image1 = $(e.target).val();
-            console.log(image1.split('\\').pop())
-        })
-        const toggleButton = document.querySelector('.navbar-toggler');
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-
-        toggleButton.addEventListener('click', () => {
-        navbarCollapse.classList.toggle('show');
-        });
     </script>
 </body>
 </html>

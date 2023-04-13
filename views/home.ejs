@@ -50,12 +50,12 @@
       </nav>
       
     <div class="container">
-        <div class="hero row bg-image d-flex align-items-center justify-content-center" style="min-height: 500px; background-image: url('images/13.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+        <div class="hero row bg-image d-flex align-items-center justify-content-center" style="min-height: 500px; background-image: url('images/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
                 <div class="rounded-1 bg-dark text-center text-light py-2" style="opacity: 75%; max-width: 80%;">
                   <h1 class="mb-4">Luxury Villas for Rent</h1>
                   <p class="lead mb-5">Experience the ultimate comfort and relaxation in our top-rated villas</p>
                   <p>Kampala Holiday Homes offers a unique range of luxury holiday homes for short lets in areas around Kampala. All of our homes are beautifully furnished to Western Europe standards and are targeted to individuals living outside Uganda in need of short term accommodation.</p>
-                  <a href="#" class="btn btn-primary btn-lg">Book Now<p class="p-0 m-0">£20</p></a>
+                  <a href="https://www.paypal.com/webapps/shoppingcart?flowlogging_id=f8761408f6fea&mfid=1681382805559_f8761408f6fea" target="_blank" class="btn btn-primary btn-lg">Book Now<p class="p-0 m-0">£20</p></a>
                 </div>
         </div>
         <div class="row bg-gradient text-warning bg-success bg-dark">
@@ -64,44 +64,28 @@
         <div class="row gallery">
             <h2 class="text-center">Our Top rated Villas</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4 pb-2 m-0 bg-dark">
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="House Image">
-                    <div class="card-body">
-                      <h5 class="card-title">House Name</h5>
-                      <p class="card-text">House Description</p>
-                    </div>
-                    <div class="card-footer">
-                      <a href="#" class="btn btn-primary">View House Details</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="House Image">
-                    <div class="card-body">
-                      <h5 class="card-title">House Name</h5>
-                      <p class="card-text">House Description</p>
-                    </div>
-                    <div class="card-footer">
-                      <a href="#" class="btn btn-primary">View House Details</a>
+              <% if(typeof houses === 'undefined' || houses.length<1) { %>
+                <h1>Not yet rated by our customers</h1>
+              <% } else { %>
+                <% for(i=0; i < houses.length; i++){ %>
+                  <% if (i == 3) { %>
+                  <% break; %>
+                  <% } %>
+                  <div class="col">
+                    <div class="card h-100">
+                      <img src="images/<%= houses[i].name %>/<%= houses[i].image %>" class="card-img-top" alt="House Image">
+                      <div class="card-body">
+                        <h5 class="card-title"><%= houses[i].name %> - <%= houses[i].location %></h5>
+                        <p class="card-text"><%= houses[i]['simple-description'] %></p>
+                      </div>
+                      <div class="card-footer">
+                        <a href="/properties/<%= houses[i]["location"] %>/<%= houses[i]["name"] %>/<%= i %>" class="btn btn-primary">View House Details</a>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col">
-                  <div class="card h-100">
-                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="House Image">
-                    <div class="card-body">
-                      <h5 class="card-title">House Name</h5>
-                      <p class="card-text">House Description</p>
-                    </div>
-                    <div class="card-footer">
-                      <a href="#" class="btn btn-primary">View House Details</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
+                <% } %>
+              <% } %>              
+            </div>
         </div>
         <div class="row footer">
             <div class="col-12 bg-danger">
@@ -112,7 +96,6 @@
     <script src="styleLib/jquery.js"></script>
     <script src="styleLib/js.js"></script>
     <script>
-        
-    </script>
+  </script>
 </body>
 </html>

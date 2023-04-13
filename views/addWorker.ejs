@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHH new Worker</title>
+    <link rel="stylesheet" href="styleLib/bootstrap.min.css">
+    <link rel="stylesheet" href="styleLib/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row kampala">
+            <div class="col-12"><img class="khh" src="images/holiday_homes_banner.jpg" alt="Kampala Holiday Homes"></div>
+        </div>
+    </div>
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Kampala Holiday Homes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/properties">Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/advertise">Advertise</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutUs">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contactUs">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">This form is to add/ Register new worker</h1>
+        </div>
+        <div class="row bg-light">
+            <form id="worker-form" class="py-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Worker Name</label>
+                    <input type="text" class="form-control" id="wName" name="Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="pic" class="form-label">Photo</label>
+                    <input type="file" class="form-control" onchange="upLoad(this)" id="wPic" name="image" required>
+                    <div class="form-control" style="height: 200px; width: 200px; display: flex; justify-content: center; align-items: center;">
+                        <img class="wPic" style="max-width: 100%; max-height: 100%;" src="">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="simple-description" class="form-label">Description</label>
+                    <textarea class="form-control" id="wDes" name="simple description" rows="2" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="row footer">
+            <div class="col-12 bg-danger">
+                <p class="text-light text-center">&copy; KAMPALA HOLIDAY HOMES</p>
+            </div>
+        </div>
+    </div>
+    <div class="warn"></div>
+    <script src="styleLib/jquery.js"></script>
+    <script src="styleLib/bootstrap.bundle.min.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="styleLib/js.js"></script>
+    <script src="styleLib/newHouse.js"></script>
+    <script>
+        addItem('/addWorker')
+        $('#worker-form').submit(e=>{
+          e.preventDefault();
+          // customAlert2("Wait while data is being uploaded");
+          var res = {
+            "name": $('#wName').val(),
+            "photo": $('#wPic').val().split('\\').pop(),
+            "description":$('#wDes').val()
+          }
+          var res1 = {
+            "dbName":"people",
+            "tbName":"users",
+            "arr":"workers",
+            "url":"/aboutUs",
+            "page":"about Us"
+          }
+          var formData = new FormData
+          formData.append('data', JSON.stringify(res));
+          formData.append('data1', JSON.stringify(res1));
+
+          customAlert2("wait while data is being uploaded")
+          
+          fetch('/addData/houses', {
+              method: 'POST',
+              body: formData
+            }).then(response => {
+                return response.json();
+            }).then(async (data) => {
+              if(data.url){
+                var con = await customConfirm2("Page is going to be redirected "+res1.page)
+                  if(con){
+                      window.location.href = data.url;
+                  }
+              }
+              else{
+                customAlert(data.err);
+              }
+            }).catch(error => {
+              customAlert("Error: "+error.message)
+            });
+        })
+    </script>
+</body>
+</html>

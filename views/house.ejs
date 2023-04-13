@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHH house</title>
+    <link rel="stylesheet" href="../../../styleLib/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../../../styleLib/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row kampala">
+            <div class="col-12"><img src="../../../images/holiday_homes_banner.jpg" alt="Kampala Holiday Homes"></div>
+        </div>
+    </div>
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Kampala Holiday Homes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/advertise">Advertise</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutUs">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contactUs">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    <div class="container bg-dark text-light">
+        <h4 class="house-name text-warning py-4">
+            House name
+        </h4>
+        <div class="row house">
+            <div class="col-1"></div>
+            <div class="col-sm-5 simple-description">
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus soluta dolore sint, quidem accusamus ipsam dolor, rem molestias veniam modi natus quisquam deserunt non voluptate labore molestiae corporis provident? Harum?</p>
+            </div>
+            <div class="col-sm-6 house-image">
+                <div><img class="img-fluid" src="../../../images/<%= house.name %>/<%= house.image %>" alt="<%= house.name %>"></div>
+            </div>
+        </div>
+        <br>
+        <h2 class="text-warning">Facilities</h2>
+        <div class="row Facilities text-dark">
+            <div class="col-12">
+                <div class="row gallery bg-dark">
+                    <div class="row row-cols-1 row-cols-md-3 g-4 pb-2 m-0 ">
+                        <% house.facilities.forEach(fac => { %>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="../../../images/<%= house.name %>/<%= fac.image %>" class="card-img-top" alt="House Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= fac.name %></h5>
+                                        <p class="card-text"><%= fac['description'] %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="text-warning py-2">Availability</h4>
+        <div class="row">
+            <nav class="col-4 prev">Prev<button class="bg-info rounded-1" onclick="year--; createCalender(year)"></button></nav>
+            <nav class="col-4 center"><h2 id="headYear">YEAR</h2></nav>
+            <nav class="col-4 next"><button class="bg-info rounded-1" onclick="year++; createCalender(year)"></button>Next</nav>
+        </div>
+        <div id="date1" class="row text-success">
+            <div class="col-2">
+                <!-- class="table table-striped" -->
+                <table id="tableM">
+                    <thead>
+                        <tr>
+                            <th>Months</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>January</td></tr>
+                        <tr><td>February</td></tr>
+                        <tr><td>March</td></tr>
+                        <tr><td>April</td></tr>
+                        <tr><td>May</td></tr>
+                        <tr><td>June</td></tr>
+                        <tr><td>July</td></tr>
+                        <tr><td>August</td></tr>
+                        <tr><td>September</td></tr>
+                        <tr><td>October</td></tr>
+                        <tr><td>November</td></tr>
+                        <tr><td>December</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-10 tableDate">
+                <!-- class="table table-bordered table-striped" -->
+                <table id="tableDate"></table>
+                
+            </div>
+            <div class="container bg-dark">
+                <div class="row pb-4 pt-2">
+                    <nav class="col-4 bg-warning border">Not available</nav>
+                    <nav class="col-4 border bg-light">Available</nav>
+                    <nav class="col-4 bg-info border">Pending</nav>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        <div class="row images">
+            <p>Intrested in the house?</p>
+            <button class="btn btn-success">click here</button>
+            <div class="col-4 booking">
+                <form action="POST" id="booking" class="py-3">
+                    <h4>Please enter details carefully</h4>
+                    <hr>
+                    <label class="form-label" for="Name">Name:</label>
+                    <input class="form-control pName" placeholder="Name you used for payment transaction" type="text" required>
+                    <label class="form-label" for="Email">Email:</label>
+                    <input class="form-control eMail" placeholder="Email to contact you" type="text" required>
+                    <label class="form-label" for="transId">Paypal Transaction ID:</label>
+                    <input class="form-control transId" placeholder="The Id you got after paypal payment" type="text" required>
+                    <hr>
+                    <h4>Select Dates</h4>
+                    <label class="form-label" for="start-date">Start Date:</label>
+                    <input class="form-control" type="text" id="start-date" required>
+                    <label class="form-label" for="end-date">End Date:</label>
+                    <input class="form-control" type="text" id="end-date" required>
+                    <hr>
+                    <button class="btn btn-success">Add booking to waitlist</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row footer">
+            <div class="col-12 bg-danger">
+                <p class="text-light text-center">&copy; KAMPALA HOLIDAY HOMES</p>
+            </div>
+        </div>
+    </div>
+    <script src="../../../styleLib/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="../../../styleLib/js.js"></script>
+    <script>
+var booked = {};
+var disabledDates = [];
+var obj = {};
+var myObj = {}; 
+fetch('/bookings',{
+  method:"POST"
+}).then(async (response)=>{
+  return response.json();
+}).then(async (data)=>{
+  booked = data.book
+  // createCalender(year)
+  await call()
+}).catch(err=>{
+  customAlert("Error: "+err.message)
+})
+
+async function call(){
+  await createCalender(year);
+  await mark(year);
+  // await getDisable(year)
+  await disableDate()
+}
+
+
+//         createCalender(year)
+//         // Define the start and end date range
+// const startDate = [3, 6];
+// const endDate = [8, 9];
+
+async function disableDate() {
+  function isDisabledDate(date) {
+    // Check if date is disabled
+    var isDisabled = false;
+    for (var year in booked) {
+      for (var i = 0; i < booked[year].length; i++) {
+        var startDate = new Date(booked[year][i][0]);
+        var endDate = new Date(booked[year][i][1]);
+        if (date >= startDate && date <= endDate) {
+          isDisabled = true;
+          break;
+        }
+      }
+      if (isDisabled) {
+        break;
+      }
+    }
+    return isDisabled;
+  }
+  
+  $('#start-date').datepicker({
+    dateFormat: 'yy-mm-dd',
+    minDate: 0,
+    beforeShowDay: function(date) {
+      if (isDisabledDate(date)) {
+        return [false];
+      }
+      return [true];
+    },
+    onSelect: function(date) {
+      $('#end-date').datepicker('option', 'minDate', date);
+    }
+  }).keydown(false);
+  
+  $('#end-date').datepicker({
+    dateFormat: 'yy-mm-dd',
+    minDate: 0,
+    beforeShowDay: function(date) {
+      if (isDisabledDate(date)) {
+        return [false];
+      }
+      var startDate = $('#start-date').datepicker('getDate');
+      if (startDate && date < startDate) {
+        return [false];
+      }
+      return [true];
+    }
+  }).keydown(false);
+}
+
+//Define the table cells
+function markBooked(startDate,endDate){
+    const tableRows = $('#tableDate tbody tr');
+    tableRows.each(function (rowIndex){
+        if(rowIndex < startDate[1]-1 || rowIndex > endDate[1]-1){
+            return
+        }
+        else{
+            var rowElement = $(this);
+            // const rowElement = $('tr');
+            const cells = rowElement.find('td');
+            for (let cellIndex = 0; cellIndex < rowElement.find('td').length; cellIndex++) {
+                const cell = cells.eq(cellIndex);
+                if (cell.text() === "") {
+                    continue;
+                } else if (cell.text() < startDate[0] && rowIndex === startDate[1]-1) {
+                    continue;
+                } else if (cell.text() > endDate[0] && rowIndex === endDate[1]-1) {
+                    break;
+                } else {
+                    cell.addClass('bg-warning');
+                }
+            }
+
+        }
+    });
+}
+
+function getDatePairs(start, end) {
+  const startYear = start.getFullYear();
+  const endYear = end.getFullYear();
+  const pairs = [];
+
+  if (startYear === endYear) {
+    // if start and end are in the same year
+    pairs.push([start, end]);
+  } else {
+    // if start and end are in different years
+    const startOfYear = new Date(startYear, 0, 1);
+    const endOfYear = new Date(endYear, 11, 31);
+
+    pairs.push([start, startOfYear]);
+
+    for (let year = startYear + 1; year < endYear; year++) {
+      const yearStart = new Date(year, 0, 1);
+      const yearEnd = new Date(year, 11, 31);
+      pairs.push([yearStart, yearEnd]);
+    }
+
+    pairs.push([endOfYear, end]);
+  }
+
+  return pairs;
+}
+
+
+
+
+// addDateToObj(myObj, new Date(), new Date());
+// console.log(myObj);
+// ("2023-08-13","2024-02-15")
+// Iterate over each table cell and check if it falls within the date range
+$('#booking').submit(e=>{
+  e.preventDefault();
+  var d = {
+    
+  }
+})
+    </script>
+</body>
+</html>

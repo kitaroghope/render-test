@@ -1,30 +1,106 @@
 var year = new Date().getFullYear();
-const toggleButton = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
+var books = {}
 
-    toggleButton.addEventListener('click', () => {
-    navbarCollapse.classList.toggle('show');
-});
+$(document).ready(function() {
+    // When the hamburger menu is clicked, toggle the visibility of the navigation links
+    $('.navbar-toggler').click(function() {
+      $('.navbar-collapse').toggleClass('show');
+    });
+  
+    // When a navigation link is clicked, hide the navigation links
+    $('.nav-link').click(function() {
+      $('.navbar-collapse').removeClass('show');
+    });
+  });
 
 // function that uploads images
 function upLoad(x){
     const file = x.files[0];
+    $('.display').css('display','')
+    var text = $('#propName');
+    // checking if house name is added
+    if(text.val() ==""){
+        customAlert("please first add house name");
+        $(x).val('');
+        return
+    }
+    const imageUrl = URL.createObjectURL(file)
+    $(`.${$(x).attr('id')}`).attr('src',imageUrl)
+    $('#propName').prop('disabled', true);
+    // creatung form data
     const formData = new FormData();
     formData.append('image', file);
+    customAlert2('Wait Image is being uploaded')
 
-    customAlert('Wait Image is being uploaded')
-
-    fetch('/upload', {
+    fetch(`/upload/${text.val()}`, {
       method: 'POST',
       body: formData
     }).then(response => {
         customAlert(`image upload status is ${response.statusText}`)
       console.log(response);
     }).catch(error => {
-      console.error(error);
+        customAlert(`Err: ${error.message}`)
     });
-  }
-
+}
+// function addWorker(){
+//     var key = prompt("Enter Password");
+//     if(key == ""){
+//         return;
+//     }
+//     fetch(`/about/${key}`,{
+//         method:'POST'
+//     }).then(response => {
+//         return response.json();
+//     }).then(data => {
+//         if(data.url){
+//             window.location.href = data.url;
+//         }
+//         else{
+//             customAlert(data.err);
+//         }
+//     }).catch(err => {
+//         customAlert("err: "+err.meassage);
+//     })
+// }
+function addItem(url){
+    var key = prompt("Enter Password");
+    if(key == ""){
+        return;
+    }
+    customAlert2("Wait while being approved")
+    var auth = {
+        "pass": key,
+        "url": url
+    }
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(auth));
+    fetch('/admin', {
+        method: 'POST',
+        body: formData
+      }).then(response => {
+          return response.json();
+      }).then(async (data) => {
+        if(data.url){
+            if(data.url == url){
+                customAlert('You have been granted permission.')
+            }
+            else{
+                var con = await customConfirm2("Page is going to be redirected")
+                if(con){
+                    window.location.href = data.url;
+                }
+            }
+        }
+        else{
+            var con = await customConfirm2("You don't have user rights")
+            if(con){
+                window.location.href = "/";
+            }
+        }
+      }).catch(error => {
+        customAlert("err: "+error.meassage);
+      });
+}
 // custom alert 
 function customAlert(Message){
     if($('.Warn').html()){
@@ -33,30 +109,31 @@ function customAlert(Message){
     var dialog = `
     <div class="Warn">
         <div>
-            <nav class="WarnHead">Warning</nav>
+            <nav class="WarnHead">Alert</nav>
             <nav class="WarnBody">${Message}</nav>
-            <nav class="WarnButtons"><button>Ok</button></nav>
+            <nav class="WarnButtons"><button class="btn btn-success">Ok</button></nav>
         </div>
     </div>`
     $('body').append(dialog)
-    $('body').on('click','.Warn button',(e)=>{
-        $(e.target).parent().parent().parent().remove();
-        console.log('nyizze')
-    })
 }
+
+$('body').on('click','.Warn button',(e)=>{
+    $(e.target).parent().parent().parent().remove();
+    console.log('nyizze');
+})
 // custom alert 2
 function customAlert2(Message){
     var dialog = `
     <div class="Warn">
         <div>
-            <nav class="WarnHead">Warning</nav>
+            <nav class="WarnHead">Wait</nav>
             <nav class="WarnBody">${Message}</nav>
-            <div class="text-center">
-            <div class="spinner-border spinner-border-sm text-success" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <div>Loading...</div>
-            </div>
+            <nav class="text-center">
+                <nav class="spinner-border spinner-border-sm text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </nav>
+                <nav>Loading...</nav>
+            </nav>
         </div>
     </div>`
     $('.warn').html(dialog)
@@ -65,7 +142,57 @@ function customAlert2(Message){
         console.log('nyizze')
     })
 }
+function customConfirm(Message, head = "Confirm"){
+    if($('.Warn').html()){
+        $('.Warn').remove()
+    }
+    var dialog = `
+    <div class="Warn">
+        <div>
+            <nav class="WarnHead">${head}</nav>
+            <nav class="WarnBody">${Message}</nav>
+            <nav class="WarnButtons"><button class="btn btn-success">Ok</button><button class="btn btn-danger">Cancel</button></nav>
+        </div>
+    </div>`;
+    $('body').append(dialog);
 
+    return new Promise((resolve, reject) => {
+        $('.btn-success').on('click', function() {
+            $('.Warn').remove();
+            resolve(true);
+        });
+
+        $('.btn-danger').on('click', function() {
+            $('.Warn').remove();
+            resolve(false);
+        });
+    });
+}
+function customConfirm2(Message, head = "Confirm"){
+    if($('.Warn').html()){
+        $('.Warn').remove()
+    }
+    var dialog = `
+    <div class="Warn">
+        <div>
+            <nav class="WarnHead">${head}</nav>
+            <nav class="WarnBody">${Message}</nav>
+            <nav class="WarnButtons"><button class="btn btn-success mx-1">Ok</button><button class="btn btn-danger">Cancel</button></nav>
+        </div>
+    </div>`;
+    $('body').append(dialog);
+
+    return new Promise((resolve, reject) => {
+        $('.btn-success').on('click', function() {
+            $('.Warn').remove();
+            resolve(true);
+        });
+        $('.btn-danger').on('click', function() {
+            $('.Warn').remove();
+            resolve(false);
+        });
+    });
+}
 // calender draw
 function createCalender(year){
     if(year < new Date().getFullYear()){
@@ -145,8 +272,28 @@ function createCalender(year){
         const date = new Date(year, month - 1, day);
         return date.getMonth() + 1 === month && date.getDate() === day;
     }
-
 }
-// createCalender(year)
+function dateToArray(dateString){
+    const [year, month, day] = dateString.split('-');
+    return [eval(day), eval(month), eval(year)];
+}
 
+function arrayToDate(dateArray){
+    const [day, month, year] = dateArray;
+    return `${year}-${month}-${day}`;
+}
+
+// createCalender(year)
+async function mark(year){
+    if(booked.hasOwnProperty(year)){
+        booked[year].forEach(dates => {
+          const [startDateStr, endDateStr] = dates;
+          const startDate = dateToArray(startDateStr);
+          const endDate = dateToArray(endDateStr);
+          console.log(endDate)
+          markBooked(startDate, endDate);
+        });
+    } 
+}
 // facility or house update section
+  

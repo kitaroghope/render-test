@@ -44,27 +44,30 @@
     <div class="container">
         <div class="row bg-gradient text-warning bg-success bg-dark">
             <h3 class="text-center py-4">Our Villas are organised according to their locations</h4>
+            <div class="col-3">
+              <button class="btn btn-success" onclick="addItem('addHouse')">Add New House</button>
+            </div>
         </div>
           
-          <% const houseLocations = [
-               { name: "Zaana", imageSrc: "images/image.jpg" },
-               { name: "Bunga", imageSrc: "images/image.jpg" }
-             ];
-             houseLocations.forEach((houseLocation) => { %>
-          
+          <% 
+             for(var i in properties){ 
+              if(properties[i].length < 1){
+                continue;
+              }
+              %>
             <div class="row gallery bg-dark">
-              <h6 class="text-light">In <%= houseLocation.name %></h6>
+              <h6 class="text-light">In <%= i %></h6>
               <div class="row row-cols-1 row-cols-md-3 g-4 pb-2 m-0 ">
-                <% for (let i = 1; i <= 3; i++) { %>
+                <% for (var j in properties[i]) { %>
                   <div class="col">
                     <div class="card h-100">
-                      <img src="<%= houseLocation.imageSrc %>" class="card-img-top" alt="House Image">
+                      <img src="images/<%= properties[i][j]['name'] %>/<%= properties[i][j].image %>" class="card-img-top" alt="House Image">
                       <div class="card-body">
-                        <h5 class="card-title">House Name</h5>
-                        <p class="card-text">House Description</p>
+                        <h5 class="card-title"><%= properties[i][j]['name'] %></h5>
+                        <p class="card-text"><%= properties[i][j]['simple-description'] %></p>
                       </div>
                       <div class="card-footer">
-                        <a href="#" class="btn btn-primary">View House Details</a>
+                        <a href="/properties/<%= properties[i][j]['location'] %>/<%= properties[i][j]['name'] %>/<%= j %>" class="btn btn-primary">View House Details</a>
                       </div>
                     </div>
                   </div>
@@ -72,7 +75,7 @@
               </div>
             </div>
           
-          <% }); %>
+          <% } %>
           
         <div class="row footer">
             <div class="col-12 bg-danger">
@@ -82,17 +85,5 @@
     </div>
     <script src="styleLib/jquery.js"></script>
     <script src="styleLib/js.js"></script>
-    <script>
-        $('#man').on('change',(e)=>{
-            var image1 = $(e.target).val();
-            console.log(image1.split('\\').pop())
-        })
-        const toggleButton = document.querySelector('.navbar-toggler');
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-
-        toggleButton.addEventListener('click', () => {
-        navbarCollapse.classList.toggle('show');
-        });
-    </script>
-</body>
+  </body>
 </html>

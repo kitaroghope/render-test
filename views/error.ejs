@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" integrity="sha512-l1mOZJzLr+zl2m72CVl6X9z6U/0/KU2BL4UusxkOXNvmcG5f5a5pPW51J7VXyWcC8ksVYBirxiuABb72H2w+zw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
   <body>
     <div class="container my-5">
@@ -17,6 +17,9 @@
             </div>
             <div class="card-body">
               <p>Sorry, an error has occurred. Please try again later.</p>
+              <% if (err) { %>
+               <p><%= err.message %></p>
+              <% } %>
               <a href="/" class="btn btn-primary">Go back to homepage</a>
             </div>
           </div>
@@ -24,6 +27,6 @@
       </div>
     </div>
     <!-- Bootstrap JS (optional) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js" integrity="sha512-yU5S5NO9XyfMrPVhkuCe7o0KxTSu6BZU96ivbUW5/l8JeL3dPzrZ6PHOJWwby8PvSKH+j2QhJcRG5rW8orvEOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

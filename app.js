@@ -242,10 +242,18 @@ app.post('/upload/:folderName', (req, res) => {
 });
 
 app.get('/newHouse',(req, res)=>{
-  res.render('addHouse',{locations : locations});
+  try {
+    res.render('addHouse',{locations : locations});
+  } catch (err) {
+    res.render('error',{err:err})
+  }
 });
 app.get('/addWorker',(req,res)=>{
-  res.render('addWorker')
+  try {
+    res.render('addWorker')
+  } catch (err) {
+    res.render('error',{err:err})
+  }
 })
 // load house
 app.get('/properties/:loc/:house/:id',(req, res)=>{

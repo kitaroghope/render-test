@@ -17,6 +17,17 @@ var Auth = {
   "manage":"/controlPannel"
 }
 var locations = [];
+function generateRandomString(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+}
 
 async function getHouses(){
   locations = await mongo.listTables('houses');
@@ -56,6 +67,17 @@ async function getWorkers(){
   }
   workers = res;
 }
+function generateRandomString(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
 getHouses();
 getWorkers();
 // app.use(bodyParser.json())
@@ -267,7 +289,8 @@ app.get('/properties/:loc/:house/:id',(req, res)=>{
       res.render('house',{house:properties[local][hou]})
     }
   } catch (err) {
-    res.status(500).json({err:err.message})
+    res.render('error',{err:err.message})
+    // res.status(500).json({err:err.message})
   }
 })
 

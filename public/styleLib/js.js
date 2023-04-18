@@ -92,10 +92,7 @@ function addItem(url){
             }
         }
         else{
-            var con = await customConfirm2("You don't have user rights")
-            if(con){
-                window.location.href = "/";
-            }
+            customAlert("You don't have user rights")
         }
       }).catch(error => {
         customAlert("err: "+error.meassage);

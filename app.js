@@ -12,9 +12,9 @@ var properties = {};
 var bookings = {"2023":[['2023-08-01', '2023-09-01'],['2023-09-20', '2023-11-02']]};
 var workers = [];
 var Auth = {
-  "addHouse":"/newHouse",
-  "addWorker":"/addWorker",
-  "manage":"/controlPannel"
+  "addHouse":`/${generateRandomString(10)}`,
+  "addWorker":`/${generateRandomString(10)}`,
+  "manage": `/${generateRandomString(10)}`
 }
 var locations = [];
 function generateRandomString(length) {
@@ -214,7 +214,7 @@ app.post('/admin',(req, res)=>{
     res.json({err:'Sorry your not authorised!'})
   }
 });
-app.post('/about/addworker',async (req,res)=>{
+app.post('/about/addworker',async (req,res)=>{// ``
   const result = JSON.parse(req.body.data);
   var dbName = result.dbName;
   var tName = result.tbName;
@@ -277,6 +277,28 @@ app.get('/addWorker',(req,res)=>{
     res.render('error',{err:err})
   }
 })
+// handle all routes
+app.get('*',(req, res, next)=>{
+  try {
+    if(req.path === Auth.addHouse){
+      Auth.addHouse = `/${generateRandomString(10)}`
+      res.render('addHouse',{locations : locations});
+    }
+    else if(req.path === Auth.addWorker){
+      Auth.addWorker = `/${generateRandomString(10)}`
+      res.render('addWorker');
+    }
+    else if(req.path === Auth.manage){
+      Auth.manage = `/${generateRandomString(10)}`
+      res.render('manage');
+    }
+    next();
+  } catch (err) {
+    res.render('error', {err:err.message})
+    next();
+  }
+})
+
 // load house
 app.get('/properties/:loc/:house/:id',(req, res)=>{
   try {

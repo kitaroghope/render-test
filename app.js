@@ -278,19 +278,22 @@ app.post('/upload/:folderName', (req, res) => {
 //   }
 // })
 // handle all routes
-app.get('*',(req, res, next)=>{
+app.get('/:url',(req, res, next)=>{
   try {
-    if(req.path === Auth.addHouse){
+    if(req.params.url === Auth.addHouse){
       Auth.addHouse = `/${generateRandomString(10)}`
       res.render('addHouse',{locations : locations});
     }
-    else if(req.path === Auth.addWorker){
+    else if(req.params.url === Auth.addWorker){
       Auth.addWorker = `/${generateRandomString(10)}`
       res.render('addWorker');
     }
-    else if(req.path === Auth.manage){
+    else if(req.params.url === Auth.manage){
       Auth.manage = `/${generateRandomString(10)}`
       res.render('manage');
+    }
+    else{
+      res.render('error',{err: "Your not Authorised"})
     }
     next();
   } catch (err) {

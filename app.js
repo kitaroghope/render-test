@@ -263,20 +263,20 @@ app.post('/upload/:folderName', (req, res) => {
   });
 });
 
-app.get('/newHouse',(req, res)=>{
-  try {
-    res.render('addHouse',{locations : locations});
-  } catch (err) {
-    res.render('error',{err:err})
-  }
-});
-app.get('/addWorker',(req,res)=>{
-  try {
-    res.render('addWorker')
-  } catch (err) {
-    res.render('error',{err:err})
-  }
-})
+// app.get('/newHouse',(req, res)=>{
+//   try {
+//     res.render('addHouse',{locations : locations});
+//   } catch (err) {
+//     res.render('error',{err:err})
+//   }
+// });
+// app.get('/addWorker',(req,res)=>{
+//   try {
+//     res.render('addWorker')
+//   } catch (err) {
+//     res.render('error',{err:err})
+//   }
+// })
 // handle all routes
 app.get('*',(req, res, next)=>{
   try {

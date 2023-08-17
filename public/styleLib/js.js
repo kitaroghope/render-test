@@ -85,7 +85,7 @@ function addItem(url){
                 customAlert('You have been granted permission.')
             }
             else{
-                var con = await customConfirm2("Page is going to be redirected")
+                var con = await customConfirm2(`Page is going to be redirected to one time link: ${url}`)
                 if(con){
                     window.location.href = data.url;
                 }
@@ -174,9 +174,10 @@ function customConfirm2(Message, head = "Confirm"){
         <div>
             <nav class="WarnHead">${head}</nav>
             <nav class="WarnBody">${Message}</nav>
-            <nav class="WarnButtons"><button class="btn btn-success mx-1">Ok</button><button class="btn btn-danger">Cancel</button></nav>
+            <nav class="WarnButtons"><button class="btn btn-success mx-1">Ok</button></nav>
         </div>
     </div>`;
+            // <button class="btn btn-danger">Cancel</button>
     $('body').append(dialog);
 
     return new Promise((resolve, reject) => {
@@ -184,10 +185,10 @@ function customConfirm2(Message, head = "Confirm"){
             $('.Warn').remove();
             resolve(true);
         });
-        $('.btn-danger').on('click', function() {
-            $('.Warn').remove();
-            resolve(false);
-        });
+        // $('.btn-danger').on('click', function() {
+        //     $('.Warn').remove();
+        //     resolve(false);
+        // });
     });
 }
 // calender draw

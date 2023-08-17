@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const fileUpload = require('express-fileupload');
 const mongo = require('./mongoDBApi');
 const ejs = require('ejs');
@@ -8,6 +9,7 @@ const { error } = require('console');
 const { stringify } = require('querystring');
 
 const app = express();
+app.use(cors())
 var properties = {};
 var bookings = {"2023":[['2023-08-01', '2023-09-01'],['2023-09-20', '2023-11-02']]};
 var workers = [];

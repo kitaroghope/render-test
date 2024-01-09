@@ -173,6 +173,11 @@ app.get('/', async (req, res) => {
     // res.send
   // }
   // else{
+    try {
+      await getHouses();
+    } catch (error) {
+      console.log("There was an error")
+    }
     res.render('home',{houses:properties["Entebbe"]})
     console.log("locations "+properties)
   // }
@@ -198,7 +203,13 @@ app.post('/bookings',async(req, res)=>{
 
 var pass = "administrator";
 // about us route
-app.get('/aboutUs', (req, res) => {
+app.get('/aboutUs',async (req, res) => {
+  try {
+    await getWorkers();
+  } catch (error) {
+    console.log("There was an error")
+  }
+
   res.render('about',{workers:workers})
 });
 // add worker
